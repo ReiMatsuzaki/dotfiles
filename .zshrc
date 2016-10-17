@@ -21,11 +21,12 @@ export TERM=xterm-256color
 
 #cd -[tab]
 setopt auto_pushd
+setopt pushd_ignore_dups
 #display detail if bad command is inputed.
 setopt correct
 #pack compli
 setopt list_packed
-
+setopt hist_ignore_all_dups
 # ==== alias ====
 alias ls='ls --color=auto'
 alias ll='ls -l'
@@ -36,6 +37,7 @@ alias runmath="math -script"
 
 # -- emacsclient --
 alias f='emacsclient -nw'
+alias kill-emacs="emacsclient -e '(kill-emacs)'"
 #alias o='emacsclient $1 &'
 export EDITOR='emacsclient -nw'
 export VISUAL='emacsclient -nw'
@@ -46,6 +48,13 @@ function ls_emacs() {
 }
 alias ff="ls_emacs"
 
+function peco-history-selection() {
+  BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+  CURSOR=$#BUFFER
+  zle reset-prompt
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
 
 # ===== PROMPT setting =====
 #autoload -U promptinit
@@ -64,7 +73,6 @@ SPROMPT="%r is correct? [n,y,a,e]"
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-setopt hist_ignore_dups
 setopt share_history
 
 # ==== prediction of command ====
