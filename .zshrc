@@ -6,8 +6,8 @@ bindkey -e
 export FPATH=${HOME}/local/share/zsh/5.0.7/functions:$FPATH
 
 ##standard compl
-autoload -U compinit
-compinit
+autoload -Uz compinit
+compinit -u
 
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
@@ -28,9 +28,18 @@ setopt correct
 setopt list_packed
 setopt hist_ignore_all_dups
 # ==== alias ====
-alias ls='ls --color=auto'
-alias ll='ls -l'
-alias la='ls -a'
+case "${OSTYPE}" in 
+darwin*)
+    alias ls='ls -GF'
+    alias ll='ls -GF'
+    alias la='ls -GF'
+    ;;
+Linux*)
+    alias ls='ls --color=auto'
+    alias ll='ls -l --color=auto'
+    alias la='ls -a --color=auto'
+    ;;
+esac
 
 alias runsub="python ~/src/prog/support_jobs/runsub/runsub.py"
 alias runmath="math -script"
