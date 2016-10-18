@@ -23,7 +23,3 @@ imap <c-j> <esc>
 
 colorscheme elflord
 
-"fold setting
-set foldmethod=indent
-let c_fold=1
-set foldlevel=5 
