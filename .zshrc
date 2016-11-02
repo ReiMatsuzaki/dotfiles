@@ -14,7 +14,8 @@ export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 
 zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 #Lang Setting
-export LANG=C
+#export LANG=C
+export LANG=ja_JP.UTF-8
 
 # xterm 256 color
 export TERM=xterm-256color
@@ -33,6 +34,8 @@ darwin*)
     alias ls='ls -GF'
     alias ll='ls -GF'
     alias la='ls -GF'
+    alias qview='qlmanage -p'
+#    alias pip='pip install --install-option="--prefix=$HOME/local"'
     ;;
 Linux*)
     alias ls='ls --color=auto'
@@ -40,6 +43,7 @@ Linux*)
     alias la='ls -a --color=auto'
     ;;
 esac
+
 
 alias runsub="python ~/src/prog/support_jobs/runsub/runsub.py"
 alias runmath="math -script"
