@@ -5,6 +5,10 @@ bindkey -e
 # this path is used for autoload 
 export FPATH=${HOME}/local/share/zsh/5.0.7/functions:$FPATH
 
+#PATH
+# this path is used for autoload 
+export PATH=${HOME}/local/bin:$PATH
+
 ##standard compl
 autoload -Uz compinit
 compinit -u
@@ -29,6 +33,7 @@ setopt correct
 setopt list_packed
 setopt hist_ignore_all_dups
 # ==== alias ====
+alias ls='ls --color=auto'
 case "${OSTYPE}" in 
 darwin*)
     alias ls='ls -GF'
