@@ -94,9 +94,8 @@ autoload colors
 colors
 if [[ -n "${SSH_CONNECTION}" ]]; then
     p_info="%B%F{magenta}%n@%m%f%b:"
-#  p_info="%F{magenta}%n@%m%f:"
 else
-  p_info="%F{blue}local%f:"
+  p_info="%B%F{cyan}local%f%b:"
 fi
 local p_cdir="[%B%F{yellow}%~%f%b]"$'\n'
 local p_arrow="%B%(?,%F{green},%F{red})>%f%b"
