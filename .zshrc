@@ -95,7 +95,7 @@ colors
 if [[ -n "${SSH_CONNECTION}" ]]; then
     p_info="%B%F{magenta}%n@%m%f%b:"
 else
-  p_info="%B%F{cyan}local%f%b:"
+    p_info="%B%F{cyan}%n@%m%f%b:"
 fi
 local p_cdir="[%B%F{yellow}%~%f%b]"$'\n'
 local p_arrow="%B%(?,%F{green},%F{red})>%f%b"
