@@ -92,10 +92,16 @@ bindkey '^R' peco-history-selection
 #promptinit
 autoload colors
 colors
+if [[ -n "${SSH_CONNECTION}" ]]; then
+    p_info="%B%F{magenta}%n@%m%f%b:"
+#  p_info="%F{magenta}%n@%m%f:"
+else
+  p_info="%F{blue}local%f:"
+fi
 local p_cdir="[%B%F{yellow}%~%f%b]"$'\n'
-local p_info="%F{magenta}%n@%m%f"
-local p_arrow="%(?,%F{green},%F{red})>%f"
-PROMPT="$p_info:$p_cdir$p_arrow "
+local p_arrow="%B%(?,%F{green},%F{red})>%f%b"
+
+PROMPT="$p_info$p_cdir$p_arrow "
 #RPROMPT="$p_info"
 PROMPT2="%B%{[31m%}%_#%{[m%}%b %% "
 SPROMPT="%r is correct? [n,y,a,e]"
