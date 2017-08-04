@@ -57,11 +57,11 @@ alias ag-fsub='(){ ag "SUBROUTINE $1"}'
 alias ag-ffunc='(){ ag "FUNCTION $1"}'
 
 # -- emacsclient --
-alias f='emacsclient -nw'
+alias f='emacsclient'
 alias kill-emacs="emacsclient -e '(kill-emacs)'"
 #alias o='emacsclient $1 &'
-export EDITOR='emacsclient -nw'
-export VISUAL='emacsclient -nw'
+export EDITOR='emacsclient'
+export VISUAL='emacsclient'
 
 # -- peco --
 function ls_emacs() {
