@@ -102,16 +102,6 @@ colors
 #local p_cdir="[%B%F{yellow}%~%f%b]"$'\n'
 #local p_arrow="%B%(?,%F{green},%F{red})>%f%b"
 
-## for Light theme
-local p_info="%B%F{cyan}%n@%m%f%b:"
-local p_cdir="[%B%F{magenta}%~%f%b]"$'\n'
-local p_arrow="%B%(?,%F{blue},%F{red})>%f%b"
-
-PROMPT="$p_info$p_cdir$p_arrow "
-#RPROMPT="$p_info"
-PROMPT2="%B%{[31m%}%_#%{[m%}%b %% "
-SPROMPT="%r is correct? [n,y,a,e]"
-
 # ==== History ====
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
