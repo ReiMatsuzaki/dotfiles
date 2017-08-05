@@ -58,16 +58,17 @@ alias ag-ffunc='(){ ag "FUNCTION $1"}'
 
 # -- emacsclient --
 alias f='emacsclient'
+alias f='emacsclient -nw'
 alias kill-emacs="emacsclient -e '(kill-emacs)'"
 #alias o='emacsclient $1 &'
-export EDITOR='emacsclient'
-export VISUAL='emacsclient'
+export EDITOR='emacsclient -nw'
+export VISUAL='emacsclient -nw'
 
 # -- peco --
 function ls_emacs() {
     emacsclient -nw "$(ls -F | grep -v / | peco)"
 }
-alias ff="ls_emacs"
+#alias ff="ls_emacs"
 function git_ls_emacs() {
     emacsclient -nw "$(git ls-files | peco)$"
 }
@@ -86,21 +87,6 @@ function peco-history-selection() {
 }
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
-
-# ===== PROMPT setting =====
-#autoload -U promptinit
-#promptinit
-autoload colors
-colors
-
-## for Dark theme
-#if [[ -n "${SSH_CONNECTION}" ]]; then
-#    p_info="%B%F{magenta}%n@%m%f%b:"
-#else
-#    p_info="%B%F{cyan}%n@%m%f%b:"
-#fi
-#local p_cdir="[%B%F{yellow}%~%f%b]"$'\n'
-#local p_arrow="%B%(?,%F{green},%F{red})>%f%b"
 
 # ==== History ====
 HISTFILE=~/.zsh_history
