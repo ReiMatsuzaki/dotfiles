@@ -57,7 +57,7 @@ alias ag-fsub='(){ ag "SUBROUTINE $1"}'
 alias ag-ffunc='(){ ag "FUNCTION $1"}'
 
 # -- emacsclient --
-alias f='emacsclient'
+alias ff='emacsclient'
 alias f='emacsclient -nw'
 alias kill-emacs="emacsclient -e '(kill-emacs)'"
 #alias o='emacsclient $1 &'
@@ -81,7 +81,7 @@ function peco-history-selection() {
     else
 	tac="tail -r"
     fi
-    BUFFER=`history -n 1 | eval $tac | awk '!a[$0]++' | peco`
+    BUFFER=`\history -n 1 | eval $tac | awk '!a[$0]++' | peco`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
