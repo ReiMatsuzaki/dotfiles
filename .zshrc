@@ -88,6 +88,24 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
+# ===== PROMPT setting =====
+#autoload -U promptinit
+#promptinit
+autoload colors
+colors
+if [[ -n "${SSH_CONNECTION}" ]]; then
+    p_info="%B%F{magenta}%n@%m%f%b:"
+else
+    p_info="%B%F{cyan}%n@%m%f%b:"
+fi
+local p_cdir="[%B%F{yellow}%~%f%b]"$'\n'
+local p_arrow="%B%(?,%F{green},%F{red})>%f%b"
+
+PROMPT="$p_info$p_cdir$p_arrow "
+#RPROMPT="$p_info"
+PROMPT2="%B%{[31m%}%_#%{[m%}%b %% "
+SPROMPT="%r is correct? [n,y,a,e]"
+
 # ==== History ====
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
