@@ -7,10 +7,9 @@ export LIBRARY_PATH=~/local/lib:/usr/local/lib/:$LIBRARY_PATH
 export CPLUS_INCLUDE_PATH=/usr/local/include/:~/local/include/:$CPLUS_INCLUDE_PATH
 
 ## ==== alias ====
-alias ls='ls -G'
+alias ls='ls --color=auto'
 alias f='emacsclient -nw'
 alias kill-emacs='emacsclient -e "(kill-emacs)"'
-
 
 ## ==== Prompt ====
 #PS1='\[\e[36m\]\t \[\e[33m\]\w \[\e[37m\]\n'

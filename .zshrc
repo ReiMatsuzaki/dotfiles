@@ -5,6 +5,11 @@ bindkey -e
 # this path is used for autoload 
 export FPATH=${HOME}/local/share/zsh/5.0.7/functions:$FPATH
 
+#PATH
+# this path is used for autoload 
+export PATH=${HOME}/local/bin:$PATH
+export PATH=${HOME}/bin:$PATH
+
 ##standard compl
 autoload -Uz compinit
 compinit -u
@@ -28,7 +33,10 @@ setopt correct
 #pack compli
 setopt list_packed
 setopt hist_ignore_all_dups
+#prevent error for []
+setopt nonomatch
 # ==== alias ====
+alias ls='ls --color=auto'
 case "${OSTYPE}" in 
 darwin*)
     alias ls='ls -GF'
@@ -44,11 +52,12 @@ Linux*)
     ;;
 esac
 
-
-alias runsub="python ~/src/prog/support_jobs/runsub/runsub.py"
-alias runmath="math -script"
+# -- for fortran code --
+alias ag-fsub='(){ ag "SUBROUTINE $1"}'
+alias ag-ffunc='(){ ag "FUNCTION $1"}'
 
 # -- emacsclient --
+alias ff='emacsclient'
 alias f='emacsclient -nw'
 alias kill-emacs="emacsclient -e '(kill-emacs)'"
 #alias o='emacsclient $1 &'
@@ -59,7 +68,11 @@ export VISUAL='emacsclient -nw'
 function ls_emacs() {
     emacsclient -nw "$(ls -F | grep -v / | peco)"
 }
-alias ff="ls_emacs"
+#alias ff="ls_emacs"
+function git_ls_emacs() {
+    emacsclient -nw "$(git ls-files | peco)$"
+}
+alias fg="git_ls_emacs"
 
 function peco-history-selection() {
     local tac
@@ -68,7 +81,7 @@ function peco-history-selection() {
     else
 	tac="tail -r"
     fi
-    BUFFER=`history -n 1 | eval $tac | awk '!a[$0]++' | peco`
+    BUFFER=`\history -n 1 | eval $tac | awk '!a[$0]++' | peco`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
@@ -112,11 +125,16 @@ add-zsh-hook chpwd chpwd_recent_dirs
 #promptinit
 autoload colors
 colors
-local p_cdir="[%B%F{magenta}%~%f%b]"$'\n'
-local p_info="%F{yellow}<%n@%m>%f"
-local p_arrow="%(?,%F{green},%F{red})>%f"
-PROMPT=" $p_cdir$p_arrow "
-RPROMPT="$p_info"
+if [[ -n "${SSH_CONNECTION}" ]]; then
+    p_info="%B%F{magenta}%n@%m%f%b:"
+else
+    p_info="%B%F{cyan}%n@%m%f%b:"
+fi
+local p_cdir="[%B%F{yellow}%~%f%b]"$'\n'
+local p_arrow="%B%(?,%F{green},%F{red})>%f%b"
+
+PROMPT="$p_info$p_cdir$p_arrow "
+#RPROMPT="$p_info"
 PROMPT2="%B%{[31m%}%_#%{[m%}%b %% "
 SPROMPT="%r is correct? [n,y,a,e]"
 
