@@ -81,7 +81,7 @@ function peco-history-selection() {
     else
 	tac="tail -r"
     fi
-    BUFFER=`\history -n 1 | eval $tac | awk '!a[$0]++' | peco`
+    BUFFER=`history -n 1 | eval $tac | awk '!a[$0]++' | peco`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
@@ -100,7 +100,6 @@ function peco-note-dir-selection() {
     zle reset-prompt
 }
 zle -N peco-note-dir-selection
-bindkey '^R' peco-note-dir-selection
 bindkey '^T' peco-note-dir-selection
 alias nd=peco-note-dir-selection
 
