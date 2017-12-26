@@ -88,6 +88,7 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
+<<<<<<< HEAD
 function peco-note-dir-selection() {
     local tac
     if which tac > /dev/null; then
@@ -102,6 +103,23 @@ function peco-note-dir-selection() {
 zle -N peco-note-dir-selection
 bindkey '^T' peco-note-dir-selection
 alias nd=peco-note-dir-selection
+=======
+#function peco-note-dir-selection() {
+#    local tac
+#    if which tac > /dev/null; then
+#	tac="tac"
+#    else
+#	tac="tail -r"
+#    fi
+#    BUFFER=`find ~/note/daily -type d -depth 4 | eval $tac | peco`
+#    CURSOR=$#BUFFER
+#    zle reset-prompt
+#}
+#zle -N peco-note-dir-selection
+#bindkey '^R' peco-note-dir-selection
+#bindkey '^T' peco-note-dir-selection
+#alias nd=peco-note-dir-selection
+>>>>>>> f4c0def02d1b561eceecea4f48700cc40d517126
 
 # ==== any frame ====
 # to install anyframe, type below command
@@ -118,7 +136,6 @@ alias cdd=anyframe-widget-cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
-
 # ===== PROMPT setting =====
 #autoload -U promptinit
 #promptinit
@@ -127,7 +144,8 @@ colors
 if [[ -n "${SSH_CONNECTION}" ]]; then
     p_info="%B%F{magenta}%n@%m%f%b:"
 else
-    p_info="%B%F{cyan}%n@%m%f%b:"
+    p_info="%B%F{cyan}%n@local%f%b:"
+    #    p_info="%B%F{cyan}%n@%m%f%b:"
 fi
 local p_cdir="[%B%F{yellow}%~%f%b]"$'\n'
 local p_arrow="%B%(?,%F{green},%F{red})>%f%b"
