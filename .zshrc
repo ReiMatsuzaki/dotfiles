@@ -75,6 +75,38 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
+function peco-note-dir-selection() {
+    local tac
+    if which tac > /dev/null; then
+	tac="tac"
+    else
+	tac="tail -r"
+    fi
+    BUFFER=`find ~/note/daily -type d -depth 4 | eval $tac | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N peco-note-dir-selection
+bindkey '^R' peco-note-dir-selection
+bindkey '^T' peco-note-dir-selection
+alias nd=peco-note-dir-selection
+
+# ==== any frame ====
+# to install anyframe, type below command
+##  mkdir ~/.zsh
+##  cd ~/.zsh
+##　git clone git@github.com:mollifier/anyframe.git
+##
+
+fpath=(~/.zsh/anyframe(N-/) $fpath)
+autoload -Uz anyframe-init
+anyframe-init
+alias cdd=anyframe-widget-cdr
+
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
+
 # ===== PROMPT setting =====
 #autoload -U promptinit
 #promptinit
