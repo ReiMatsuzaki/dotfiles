@@ -81,9 +81,11 @@ function peco-history-selection() {
     else
 	tac="tail -r"
     fi
-    if [ "${uname}" == 'Darwin' ]; then
+    if [ "$(uname)" == 'Darwin' ]; then
+	echo 'Darwin'
 	BUFFER=`history | eval $tac | awk '!a[$0]++' | peco`  
     else
+	echo 'other'
 	BUFFER=`history -n 1 | eval $tac | awk '!a[$0]++' | peco`  
     fi
     CURSOR=$#BUFFER
