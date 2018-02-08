@@ -1,4 +1,4 @@
 check:
 	cp orig.png test.png
-	python addtext.py test.png hello 50,10
+	python modimg.py test.png "t=14.2 fs" 50,10
 #		imgcat test.png
