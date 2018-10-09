@@ -117,10 +117,10 @@ bindkey '^R' peco-history-selection
 ##　git clone git@github.com:mollifier/anyframe.git
 ##
 
-fpath=(~/.zsh/anyframe(N-/) $fpath)
-autoload -Uz anyframe-init
-anyframe-init
-alias cdd=anyframe-widget-cdr
+#fpath=(~/.zsh/anyframe(N-/) $fpath)
+#autoload -Uz anyframe-init
+#anyframe-init
+#alias cdd=anyframe-widget-cdr
 
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
