@@ -40,7 +40,9 @@ def run():
     #    draw.text(pos, args.txt, (0,0,0))
     #draw.text(pos, args.txt, fill='#000000')
     #    draw.text(pos, args.txt, fill='#000000')
-    draw.text(pos, args.txt, font=font, fill=(255,255,255,0))
+    #    draw.text(pos, args.txt, font=font, fill=(255,255,255,0))
+    #    draw.text(pos, args.txt, font=font, fill=(0,0,0,0))
+    draw.text(pos, args.txt, font=font, fill='black')
     #draw.text(pos, args.txt, font=font)
     """
     try:
