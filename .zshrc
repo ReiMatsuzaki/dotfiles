@@ -2,11 +2,11 @@
 bindkey -e
 
 #FPATH
-# this path is used for autoload 
+# this path is used for autoload
 export FPATH=${HOME}/local/share/zsh/5.0.7/functions:$FPATH
 
 #PATH
-# this path is used for autoload 
+# this path is used for autoload
 export PATH=${HOME}/local/bin:$PATH
 export PATH=${HOME}/bin:$PATH
 
@@ -37,7 +37,7 @@ setopt hist_ignore_all_dups
 setopt nonomatch
 # ==== alias ====
 alias ls='ls --color=auto'
-case "${OSTYPE}" in 
+case "${OSTYPE}" in
 darwin*)
     alias ls='ls -GF'
     alias ll='ls -GF'
@@ -74,7 +74,7 @@ function git_ls_emacs() {
 }
 alias fg="git_ls_emacs"
 
-function peco-history-selection() {
+function peco-history-selection-old() {
     local tac
     if which tac > /dev/null; then
 	tac="tac"
@@ -83,14 +83,22 @@ function peco-history-selection() {
     fi
     if [ "$(uname)" == 'Darwin' ]; then
 	echo 'Darwin'
-	BUFFER=`history | eval $tac | awk '!a[$0]++' | peco`  
+	BUFFER=`history | eval $tac | awk '!a[$0]++' | peco`
     else
 	echo 'other'
-	BUFFER=`history -n 1 | eval $tac | awk '!a[$0]++' | peco`  
+	BUFFER=`history -n 1 | eval $tac | awk '!a[$0]++' | peco`
     fi
     CURSOR=$#BUFFER
     zle reset-prompt
 }
+function peco-history-selection() {
+    BUFFER="$(history -nr 1 | awk '!a[$0]++' | peco --query "$BUFFER" | sed 's/\\n/\n/')"
+    CURSOR=$#BUFFER
+    zle -R -c
+}
+## for mac
+##    brew install coreutils gnu-sed
+## is necessary
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
@@ -153,5 +161,3 @@ setopt share_history
 # ==== prediction of command ====
 #autoload predict-on
 #predict-on
-
-
